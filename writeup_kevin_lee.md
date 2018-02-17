@@ -20,6 +20,7 @@ The goals / steps of this project are the following:
 [image3]: ./writeup_imgs/s_channel.png "S Channel"
 [image4]: ./writeup_imgs/combined.png "Combined Thresholds"
 [image5]: ./writeup_imgs/warped.png "Perspective Transform"
+[image6]: ./writeup_imgs/binary.png "Warped Binary"
 [image8]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image9]: ./examples/example_output.jpg "Output"
 [video10]: ./project_video.mp4 "Video"
@@ -74,6 +75,10 @@ This resulted in the following source and destination points:
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
 ![alt text][image5]
+
+I then ran the warped test images through the color/gradient transform and resulted in the following images.
+
+![alt text][image6]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
