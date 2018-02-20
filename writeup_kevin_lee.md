@@ -21,6 +21,7 @@ The goals / steps of this project are the following:
 [image4]: ./writeup_imgs/combined.png "Combined Thresholds"
 [image5]: ./writeup_imgs/warped.png "Perspective Transform"
 [image6]: ./writeup_imgs/binary.png "Warped Binary"
+[image7]: ./writeup_imgs/sliding_win.png "Sliding Windows"
 [image8]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image9]: ./examples/example_output.jpg "Output"
 [video10]: ./project_video.mp4 "Video"
@@ -82,9 +83,9 @@ I then ran the warped test images through the color/gradient transform and resul
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+Then I fit my lane lines with a 2nd order polynomial and used sliding windows:
 
-![alt text][image8]
+![alt text][image7]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
