@@ -119,6 +119,7 @@ I approached this project by following the rubric and the lecture portion.  I tr
 When I first ran the pipeline on the video, I noticed there were a few problematic frames that messed up the lane tracking.  I implemented the Line object and a queue that stores the last 20 fits and used the average of those fits for drawing the lanes back onto the images.  This smooths out the error caused by the erratic frames.  I also added a method that checks if the fit is bad by signaling if the respective fitted lines crosses the center threshold (it shouldn't).
 
 **Resubmission Edit Start**
+
 Fine tuning thresholds were probably the biggest challenge I had in this project.  I did quite a bit of experimenting with different color spaces as well as the gradient options, and finding robust threshold ranges for to extract just enough information took a decent amount of trial and error.
 
 In terms of problems, the method I used to implement detecting a bad fit (whether the lines crossed a certain threshold) limits the window for a line to be detected, so if there is a sharp curve, the line detected might be labeled as a bad fit.
