@@ -96,7 +96,7 @@ I did this in code cell 13 (get_curvature function) in `advanced_lane_lines.ipyn
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `advanced_lane_lines.ipynb` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in code cell 12 in `advanced_lane_lines.ipynb` in the function `draw_lane()`.  Here is an example of my result on a test image:
 
 ![alt text][image10]
 
@@ -117,5 +117,22 @@ Here's a [link to my video result](./project_video_output.mp4)
 I approached this project by following the rubric and the lecture portion.  I tried to break up the project into parts (camera calibration, color/gradient thresholding, perspective transform, curvature, etc.).  In general, most of my issues involved playing with parameters to get the desired result.  I had to play with the threshold values, the sliding window parameters, the perspective transform source, destination, and offset values.
 
 When I first ran the pipeline on the video, I noticed there were a few problematic frames that messed up the lane tracking.  I implemented the Line object and a queue that stores the last 20 fits and used the average of those fits for drawing the lanes back onto the images.  This smooths out the error caused by the erratic frames.  I also added a method that checks if the fit is bad by signaling if the respective fitted lines crosses the center threshold (it shouldn't).
+
+**Resubmission Edit Start**
+Fine tuning thresholds were probably the biggest challenge I had in this project.  I did quite a bit of experimenting with different color spaces as well as the gradient options, and finding robust threshold ranges for to extract just enough information took a decent amount of trial and error.
+
+In terms of problems, the method I used to implement detecting a bad fit (whether the lines crossed a certain threshold) limits the window for a line to be detected, so if there is a sharp curve, the line detected might be labeled as a bad fit.
+
+1. To possibly remedy this, I could try other means of detecting a bad fit (using polynomial coefficients, testing for paralellism, testing if the curve differs too much from previous fits, etc.) that would be more robust of a solution.
+
+2. I could also implement the feature of using previous successful fits as a window for future fits, which could also boost performance as the algorithm would have less searching to do through the images.
+
+3. I could also extract more information from the fit/line detection from frame to frame to better help the smoothing process and limit the effect of bad fits.
+
+The pipeline could also fail if unforeseen objects obstruct the warped lane detection area.  This could occur if there are vehicles in the lane where detection is occuring, as the color/gradient thresholds will pick up the vehicle outlines as well as the lane lines so the sliding windows fit might be confused and use part of the vehicle as the best fit.
+
+Other examples of potential issues could be nightime driving, different color pavement, lack of actual lane lines, or too many shadows for an extended period.
+
+**Resubmission Edit End**
 
 I believe my pipeline could fail in areas with much more shaded regions.  To combat this, I would need to make the color/gradient thresholding more robust to these areas, perhaps by adding in more color channels that are better at detecting lane lines in darker images.  There are also a few frames where the lane line detection is quite a bit off, the smoothing I added help with this (taking the average of the last 10 fits), but I could possibly add some more checks that throw away fits if they do not result in a certain amount of "parallelism".
